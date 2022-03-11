@@ -3,17 +3,15 @@ package fr.lernejo.guessgame;
 import fr.lernejo.logger.Logger;
 import fr.lernejo.logger.LoggerFactory;
 
-import java.util.Scanner;
-
 public class ComputerPlayer implements Player{
     private final Logger logger = LoggerFactory.getLogger("computer");
     private boolean higher;
     private long min;
     private long max;
-    private long guess;
+    private long input;
     public ComputerPlayer(Long parseLong) {
         higher = false;
-        guess = 0;
+        input = 0;
         min = -1;
         max = parseLong;
     }
@@ -21,18 +19,18 @@ public class ComputerPlayer implements Player{
 
     @Override
     public long askNextGuess() {
-        if (this.min != -1L) {
-            this.guess = this.max / 2;
+        if (this.min == -1L) {
+            this.input = this.max / 2;
             this.min = 0;
         }
         else {
-            this.min = !this.higher ? guess : this.min;
-            this.max = this.higher ? guess : this.max;
-            guess = (this.min + this.max) / 2;
+            this.min = !this.higher ? input : this.min;
+            this.max = this.higher ? input : this.max;
+            input = (this.min + this.max) / 2;
         }
 
-        this.logger.log("Answer : " + guess);
-        return guess;
+        this.logger.log("Answer : " + input);
+        return input;
     }
 
     @Override

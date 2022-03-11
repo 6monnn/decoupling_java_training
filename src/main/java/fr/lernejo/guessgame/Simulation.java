@@ -1,10 +1,12 @@
 package fr.lernejo.guessgame;
 
-import java.text.SimpleDateFormat;
 import fr.lernejo.logger.Logger;
 import fr.lernejo.logger.LoggerFactory;
 
+import java.text.SimpleDateFormat;
+
 public class Simulation {
+
     private final Logger logger = LoggerFactory.getLogger("simulation");
     private final Player player;
     private long numberToGuess;
@@ -17,26 +19,18 @@ public class Simulation {
         this.numberToGuess = numberToGuess;
     }
 
-    /**
-     * @return true if the player have guessed the right number
-     */
     private boolean nextRound() {
-        long guess = player.askNextGuess();
-        logger.log("You guess: " + guess);
-        if (guess == numberToGuess) {
-            logger.log("Congratulation you found the number !");
+        long guess = this.player.askNextGuess();
+        if (guess == this.numberToGuess) {
+            this.logger.log("Player won");
             return true;
         }
-        else if (guess < numberToGuess) {
-            player.respond(true);
-        }
-        else if (guess > numberToGuess) {
-            player.respond(false);
-        }
+        this.player.respond(guess > this.numberToGuess);
+        this.logger.log("Player lose");
         return false;
     }
 
-    public void loopUntilPlayerSucceed(long maxLoop) {
+    public void waitForPlayerToWin(long maxLoop) {
         boolean end;
         long timeBegin = System.currentTimeMillis();
         do {
@@ -51,5 +45,6 @@ public class Simulation {
         } else {
             this.logger.log("Fin de partie, perdu en " + time);
         }
+
     }
 }

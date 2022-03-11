@@ -13,16 +13,16 @@ public class Launcher {
             maxLoop = Long.MAX_VALUE;
 
             simulation.initialize(randomNumber);
-            simulation.loopUntilPlayerSucceed(maxLoop);
+            simulation.waitForPlayerToWin(maxLoop);
         }
         else if (args[0].equals("-auto")) {
             simulation = new Simulation(new ComputerPlayer(Long.parseLong((args[1]))));
             maxLoop = 1000;
             simulation.initialize(randomNumber);
-            simulation.loopUntilPlayerSucceed(maxLoop);
+            simulation.waitForPlayerToWin(maxLoop);
         }
         else {
-            System.out.println("Veuillez choisir entre -interactive ou -auto");
+            System.out.println("Veuillez entrez l'argument interactive ou auto");
         }
     }
 }

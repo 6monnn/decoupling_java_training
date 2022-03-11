@@ -2,7 +2,6 @@ package fr.lernejo.logger;
 
 import static java.nio.file.StandardOpenOption.APPEND;
 import static java.nio.file.StandardOpenOption.CREATE;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

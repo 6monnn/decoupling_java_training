@@ -15,6 +15,7 @@ public class ContextualLogger implements Logger{
     @Override
     public void log(String message) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
+
         delegateLogger.log(LocalDateTime.now().format(formatter) + " " + callerClass + " " + message);
     }
 }
