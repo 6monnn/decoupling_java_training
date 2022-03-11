@@ -1,20 +1,27 @@
 package fr.lernejo.guessgame;
 
-import fr.lernejo.logger.*;
-
-import java.util.Scanner;
+import fr.lernejo.logger.Logger;
+import fr.lernejo.logger.LoggerFactory;
 
 public class HumanPlayer implements Player{
-    public final Logger logger = LoggerFactory.getLogger("Player");
-    public Scanner console = new Scanner(System.in);
+
+    Logger logger = LoggerFactory.getLogger("player");
+    java.util.Scanner scanner = new java.util.Scanner(System.in);
 
     @Override
     public long askNextGuess() {
-        return 0;
+        long result = scanner.nextLong();
+        scanner.nextLine();
+        return result;
     }
 
     @Override
     public void respond(boolean lowerOrGreater) {
-
+        if (lowerOrGreater) {
+            logger.log("Greater");
+        }
+        else {
+            logger.log("Lower");
+        }
     }
 }
